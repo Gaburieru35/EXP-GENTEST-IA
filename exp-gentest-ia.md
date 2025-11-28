@@ -10,13 +10,14 @@ Avaliação Comparativa da Geração Automática de Casos de Teste Utilizando In
 
 ### 1.3 Versão do Documento e Histórico de Revisão
 | Versão | Data | Autor | Descrição |
-|---:|---:|---|---|
+|---|---|---|---|
 | v1.0 | 23/11/2025 | Gabriel Henrique | Versão inicial do plano completo |
 | v1.1 | 23/11/2025 | Gabriel Henrique | Refatoração seguindo template padrão |
+| v1.2 | 28/11/2025 | Gabriel Henrique | Modelo conceitual e hipóteses; Variáveis, fatores, tratamentos e objetos de estudo e Desenho experimental  |
 
 ### 1.4 Datas
 - **Criação:** 23/11/2025  
-- **Última atualização:** 23/11/2025
+- **Última atualização:** 28/11/2025
 
 ### 1.5 Autores
 - **Gabriel Henrique** – Bacharelado em Engenharia de Software / gabriel.henrique@sga.pucminas.br
@@ -405,6 +406,269 @@ O experimento deve ser **adiado ou cancelado** antes de começar se:
    - Pilot study revela falhas críticas no protocolo
    - Impossibilidade de cumprir requisitos éticos
    - Inviabilidade técnica identificada
+
+---
+
+## 7. Modelo Conceitual e Hipóteses
+
+### 7.1 Modelo Conceitual
+
+![Modelo Conceitual](img/test-methodology-flowchart.svg)
+
+### 7.2 Hipóteses
+
+**H1 - Cobertura:**
+- **H1.0 (nula):** Não há diferença significativa na cobertura de código entre testes gerados por IA e testes manuais
+- **H1.1 (alternativa):** Ferramentas de IA alcançam cobertura significativamente diferente (maior ou menor) em comparação com testes manuais
+
+**H2 - Qualidade (Mutação):**
+- **H2.0 (nula):** Não há diferença significativa no mutation score entre testes gerados por IA e testes manuais
+- **H2.1 (alternativa):** Testes gerados por IA apresentam mutation score significativamente diferente dos testes manuais
+
+**H3 - Detecção de Falhas:**
+- **H3.0 (nula):** Não há diferença significativa na taxa de detecção de defeitos reais entre abordagens
+- **H3.1 (alternativa):** Existe diferença significativa na capacidade de detectar defeitos reais entre testes de IA e manuais
+
+**H4 - Eficiência Temporal:**
+- **H4.0 (nula):** O tempo para gerar testes com cobertura equivalente não difere significativamente entre abordagens
+- **H4.1 (alternativa):** Ferramentas de IA geram testes com cobertura equivalente em tempo significativamente menor que a abordagem manual
+
+**H5 - Manutenibilidade:**
+- **H5.0 (nula):** Não há diferença significativa na complexidade e legibilidade entre testes gerados por IA e manuais
+- **H5.1 (alternativa):** Testes gerados manualmente apresentam melhor manutenibilidade e legibilidade que testes de IA
+
+**H6 - Interação Ferramenta-Tipo de Código:**
+- **H6.0 (nula):** O desempenho relativo das ferramentas não varia significativamente conforme o tipo de código testado
+- **H6.1 (alternativa):** Existe interação significativa entre ferramenta e tipo de código, com algumas ferramentas sendo superiores para tipos específicos
+
+---
+
+### 7.3 Nível de Significância e Considerações de Poder Estatístico
+
+Para assegurar rigor metodológico e confiabilidade nas conclusões, o experimento utilizará um **nível de significância de 5% (α = 0,05)**. Esse valor é amplamente adotado em estudos empíricos de Engenharia de Software por equilibrar a probabilidade de erros tipo I e a necessidade de sensibilidade suficiente para identificar efeitos relevantes. Em situações que envolvam múltiplas comparações, poderão ser aplicados ajustes como Bonferroni ou Holm-Bonferroni, de forma a controlar a inflação da taxa de falsos positivos.
+
+Além disso, o experimento foi planejado para alcançar um **poder estatístico mínimo de 80% (1 − β ≥ 0,80)**. Esse nível indica que o estudo terá alta probabilidade de detectar efeitos reais caso eles existam, reduzindo a chance de erro tipo II. Com o número de unidades experimentais disponíveis e o uso de um desenho misto, espera-se ser capaz de detectar **efeitos de magnitude moderada (Cohen’s d ≈ 0,5)**. Efeitos menores poderão ser identificados se a variabilidade observada for baixa, mas não constituem o foco principal do desenho experimental.
+
+Antes da aplicação dos testes estatísticos, serão verificados os pressupostos necessários aos métodos paramétricos tradicionais. Essa avaliação ocorrerá por meio de:
+
+- **Normalidade dos resíduos:** teste de Shapiro–Wilk;
+- **Homogeneidade de variâncias:** teste de Levene;
+- **Independência dos resíduos:** inspeção gráfica e, quando pertinente, o teste de Durbin–Watson.
+
+Caso esses pressupostos não sejam atendidos de forma adequada, serão adotadas abordagens alternativas, como **testes não paramétricos** (por exemplo, Mann–Whitney, Kruskal–Wallis ou Friedman) ou **transformações de dados** (log, raiz quadrada, Box-Cox), sempre com o objetivo de preservar a validade das inferências.
+
+Para a análise de interações — especialmente aquelas relacionadas à hipótese sobre a interação entre abordagem de geração de testes e tipo de classe — serão utilizados modelos como **ANOVA fatorial** ou **GLM**, desde que os pressupostos sejam satisfeitos. Caso contrário, será adotado o método **Aligned Rank Transform (ART)**, apropriado para cenários não paramétricos com múltiplos fatores.
+
+A interpretação dos resultados será complementada por **medidas de tamanho de efeito**, fundamentais para avaliar significância prática além da significância estatística. Serão utilizadas, conforme o tipo de análise:
+
+- **Cohen’s d**, para comparações paramétricas;
+- **η² ou partial η²**, para ANOVA e GLM;
+- **Cliff’s Delta**, em testes não paramétricos;
+- **Coeficiente r**, em análises baseadas em postos ou correlações.
+
+Em conjunto, esses parâmetros asseguram que o experimento opere com rigor estatístico adequado, ofereça conclusões confiáveis e possibilite replicabilidade, reduzindo riscos associados tanto a falsos positivos quanto a falsos negativos.
+
+---
+
+## 8. Variáveis, Fatores, Tratamentos e Objetos de Estudo
+
+### 8.1 Objetos de estudo
+Os objetos analisados no experimento consistem em:
+
+- **Classes Java selecionadas de projetos open-source maduros**, contendo diferentes características estruturais (DTOs, serviços, utilidades, algoritmos).
+- **Suítes de testes unitários geradas manualmente** por desenvolvedores experientes.
+- **Suítes de testes geradas automaticamente por ferramentas de IA**, incluindo ChatGPT, GitHub Copilot, Diffblue e Coverity.
+- **Resultados empíricos** derivados da execução das suítes, como relatórios de:
+  - cobertura de código (JaCoCo),
+  - mutação (PITest),
+  - detecção de falhas reais,
+  - métricas de complexidade e manutenibilidade (SonarQube, Checkstyle).
+
+Assim, o experimento manipula tanto *artefatos de código* quanto *resultados de execução dos testes*.
+
+---
+
+### 8.2 Sujeitos / participantes (visão geral)
+Os participantes do estudo serão:
+
+- **Desenvolvedores de software com experiência profissional em Java**, categorizados como:
+  - Júnior (3 a 5 anos de experiência),
+  - Pleno (5 a 8 anos),
+  - Sênior (> 8 anos).
+  
+O papel dos participantes será **criar testes manualmente** para um conjunto de classes predefinido e **avaliar testes gerados por IA** quando necessário (manutenibilidade e legibilidade). Não haverá estudantes ou indivíduos sem experiência prática relevante.
+
+---
+
+### 8.3 Variáveis independentes (fatores) e seus níveis
+Os fatores manipulados no experimento são:
+
+| Fator | Descrição | Níveis |
+|-------|-----------|--------|
+| **F1: Abordagem de geração de testes** | Método utilizado para criar testes unitários | Manual, ChatGPT, GitHub Copilot, Diffblue, Coverity |
+| **F2: Tipo de código testado** | Natureza estrutural e funcional da classe | DTO, Service, Utility, Algorithm |
+| **F3: Versão do teste (criado vs. revisado)** | Origem do artefato | Gerado automaticamente, Editado/Refinado pelo desenvolvedor (quando aplicável) |
+
+Os fatores F1 e F2 são os principais para avaliação das hipóteses H1–H6, enquanto F3 é secundário e aplicado apenas em análises dependentes de manutenibilidade.
+
+---
+
+### 8.4 Tratamentos (condições experimentais)
+As condições experimentais correspondem às combinações possíveis do fator F1 (abordagem usada):
+
+1. **T0 – Controle (Manual)**  
+   Suítes criadas exclusivamente por desenvolvedores experientes, sem auxílio de IA.
+
+2. **T1 – ChatGPT**  
+   Geração automática de testes por prompts padronizados, seguindo template definido no protocolo experimental.
+
+3. **T2 – GitHub Copilot**  
+   Geração automática integrada ao ambiente de desenvolvimento (IDE), utilizando sugestões contextuais.
+
+4. **T3 – Diffblue Cover**  
+   Geração automática baseada em análise estática avançada e técnicas proprietárias de inferência.
+
+5. **T4 – Coverity + Frameworks de teste**  
+   Geração ou sugestão de casos de teste baseada em análise estática e detecção de caminhos críticos.
+
+Cada tratamento será aplicado sobre o mesmo conjunto de classes, garantindo comparabilidade direta.
+
+---
+
+### 8.5 Variáveis dependentes (respostas)
+As variáveis observadas no experimento são:
+
+- **Cobertura de código:**  
+  - M1: Cobertura de linhas (%)  
+  - M2: Cobertura de branches (%)  
+  - M3: Cobertura de métodos (%)  
+  - M4: Cobertura de condições (%)
+
+- **Qualidade dos testes (mutação):**  
+  - M6: Mutation Score (%)  
+  - M7: Mutantes mortos (quantidade)  
+  - M10: Categoria de mutantes mortos
+
+- **Detecção de defeitos:**  
+  - M8: Taxa de detecção de falhas (%)  
+  - M9: Precisão na detecção (%)
+
+- **Eficiência temporal e produtividade:**  
+  - M11: Tempo total de geração (min)  
+  - M12: Testes gerados por hora  
+  - M13: Linhas de código de teste por hora
+
+- **Manutenibilidade e legibilidade:**  
+  - M14: Complexidade ciclomática  
+  - M15: Nível de aninhamento  
+  - M16: Score de boas práticas  
+  - M17: Quantidade de code smells  
+  - M18: Índice de legibilidade  
+  - M19: Taxa de documentação (%)
+
+---
+
+### 8.6 Variáveis de controle / bloqueio
+Para reduzir variabilidade indesejada, alguns fatores serão mantidos constantes:
+
+- **Ambiente técnico:** mesmo JDK, mesma versão de bibliotecas, mesma IDE.
+- **Conjunto de classes:** todos os participantes e ferramentas utilizarão exatamente os mesmos artefatos.
+- **Ferramentas de medição:** JaCoCo, PITest, SonarQube e Checkstyle com configuração fixa.
+- **Tempo permitido:** janela de trabalho equivalente para todos os participantes.
+- **Hardware:** execução em máquinas virtualizadas padronizadas.
+- **Treinamento:** instruções e protocolos uniformes para todos os participantes.
+- **Experiência mínima:** todos possuem ≥ 3 anos de prática em Java e testes.
+
+Além disso, a experiência do desenvolvedor será usada como **fator de bloqueio** quando necessário para análises secundárias.
+
+---
+
+### 8.7 Possíveis variáveis de confusão conhecidas
+Alguns fatores podem impactar os resultados e serão monitorados:
+
+- **Motivação e fadiga dos participantes** (potencial viés humano).
+- **Qualidade intrínseca da classe analisada**, independentemente do método de teste.
+- **Experiência prévia com ferramentas de IA**, que pode favorecer alguns participantes.
+- **Prompt engineering** (no caso de ChatGPT), mesmo com template padronizado.
+- **Atualizações ou instabilidade das ferramentas de IA** durante o experimento.
+- **Diferenças de granularidade entre ferramentas** (ex.: Diffblue tende a gerar muitos testes pequenos).
+
+Relatórios e logs serão coletados para avaliar qualquer influência desses fatores.
+
+---
+
+## 9. Desenho Experimental
+
+### 9.1 Tipo de desenho
+
+O experimento adota um **desenho fatorial misto**, combinando fatores entre-sujeitos e dentro-dos-sujeitos.  
+A abordagem de geração de testes (manual, ChatGPT, Copilot, Diffblue, Coverity) funciona como um **fator entre-sujeitos**, enquanto o **tipo de classe** (DTO, Service, Utility, Algorithm) atua como fator dentro-dos-sujeitos, permitindo que o mesmo conjunto de classes seja utilizado em múltiplas condições.  
+
+O uso de um desenho misto é adequado pois:
+- reduz variabilidade individual,
+- aumenta poder estatístico,
+- permite investigar interações,
+- mantém viabilidade operacional.
+
+---
+
+### 9.2 Randomização e alocação
+
+A randomização será aplicada nos pontos essenciais do experimento para reduzir viés de ordem e viés de alocação.  
+A tabela abaixo resume de forma objetiva como a randomização ocorrerá:
+
+#### **Tabela — Itens randomizados e métodos aplicados**
+
+| Elemento randomizado | Unidade aplicada | Método | Objetivo |
+|----------------------|------------------|--------|----------|
+| Ordem das classes | Por participante | Lista embaralhada (seed fixa) | Evitar efeito de ordem |
+| Atribuição das classes aos tratamentos | Por bloco (experiência) | Randomização balanceada | Garantir grupos comparáveis |
+| Sequência de execução das ferramentas de IA | Por classe | Script automatizado | Reprodutibilidade |
+
+A seed da randomização será documentada no protocolo experimental para garantir rastreabilidade e repetibilidade.
+
+---
+
+### 9.3 Balanceamento e contrabalanço
+
+Para evitar desequilíbrios e efeitos de aprendizagem, alguns mecanismos de balanceamento serão aplicados. Neste caso, apenas um pequeno quadro é necessário para esclarecer os mecanismos utilizados:
+
+#### **Tabela — Estratégias aplicadas**
+
+| Estratégia | Aplicação | Finalidade |
+|------------|-----------|------------|
+| Balanceamento entre tratamentos | Mesmo conjunto de classes para todas as abordagens | Comparabilidade direta |
+| Balanceamento entre tipos de classe | Quantidade igual de DTOs, Services, Utilities e Algorithms | Evitar viés de dificuldade |
+| Contrabalanço parcial (Latin Square) | Sequência de tarefas manuais | Reduz efeito de ordem |
+| Divisão em sessões | Participantes humanos | Minimizar fadiga e variabilidade |
+
+Essas estratégias garantem que diferenças observadas entre tratamentos não sejam distorcidas por fatores externos.
+
+---
+
+### 9.4 Número de grupos e sessões
+
+A estrutura geral do experimento pode ser resumida em uma tabela simples, suficiente para dar clareza sem tornar o texto excessivamente tabular:
+
+#### **Tabela — Grupos experimentais**
+
+| Grupo | Tratamento | Tipo |
+|-------|------------|------|
+| G0 | T0 — Manual | Controle |
+| G1 | T1 — ChatGPT | IA |
+| G2 | T2 — Copilot | IA |
+| G3 | T3 — Diffblue | IA |
+| G4 | T4 — Coverity | IA |
+
+Os participantes humanos atuarão principalmente no grupo controle (G0) e nas avaliações de manutenibilidade dos testes gerados por IA. Já as ferramentas atuam de forma automatizada nos demais grupos.
+
+As sessões previstas são três:
+
+1. **Sessão 1:** geração manual de testes pelos participantes;  
+2. **Sessão 2:** execução automática dos testes gerados por IA (T1–T4);  
+3. **Sessão 3:** avaliação e manutenção das suítes pelos participantes, quando aplicável.
+
+Essa estrutura mantém o experimento funcional, balanceado e reduz o impacto de fadiga ou variação individual.
 
 ---
 
