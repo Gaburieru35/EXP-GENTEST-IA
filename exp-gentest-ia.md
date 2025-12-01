@@ -14,10 +14,11 @@ Avaliação Comparativa da Geração Automática de Casos de Teste Utilizando In
 | v1.0 | 23/11/2025 | Gabriel Henrique | Versão inicial do plano completo |
 | v1.1 | 23/11/2025 | Gabriel Henrique | Refatoração seguindo template padrão |
 | v1.2 | 28/11/2025 | Gabriel Henrique | Modelo conceitual e hipóteses; Variáveis, fatores, tratamentos e objetos de estudo e Desenho experimental  |
+| v2.0 | 01/12/2025 | Gabriel Henrique |  População, sujeitos e amostragem; Instrumentação e protocolo operacional e Plano de análise de dados (pré-execução) |
 
 ### 1.4 Datas
 - **Criação:** 23/11/2025  
-- **Última atualização:** 28/11/2025
+- **Última atualização:** 01/12/2025
 
 ### 1.5 Autores
 - **Gabriel Henrique** – Bacharelado em Engenharia de Software / gabriel.henrique@sga.pucminas.br
@@ -671,5 +672,129 @@ As sessões previstas são três:
 Essa estrutura mantém o experimento funcional, balanceado e reduz o impacto de fadiga ou variação individual.
 
 ---
+
+# 10. População, Sujeitos e Amostragem
+
+## 10.1 População-alvo
+A população-alvo do experimento é composta por **desenvolvedores Java que atuam na criação e manutenção de testes unitários em sistemas corporativos**.  
+Incluem-se profissionais que trabalham com desenvolvimento backend, QA automatizado e equipes de produto que utilizam JUnit, Mockito e padrões modernos de teste.
+
+## 10.2 Critérios de inclusão de sujeitos
+Para participar do experimento, os sujeitos devem atender aos seguintes critérios:
+
+- Experiência mínima de **3 anos com desenvolvimento Java**.  
+- Experiência comprovada com **testes unitários** (JUnit 4/5).  
+- Familiaridade com ferramentas de mocking, especialmente **Mockito**.  
+- Disponibilidade para participar das sessões definidas (estimadas entre **20 e 30 horas**).  
+- Capacidade de ler e compreender requisitos funcionais simples.  
+- Aceitação e assinatura do **TCLE**.
+
+## 10.3 Critérios de exclusão de sujeitos
+Serão excluídos do experimento participantes que:
+
+- Tenham relação direta com o desenvolvimento de ferramentas de IA avaliadas.  
+- Apresentem conflito de interesses com empresas fabricantes dessas ferramentas.  
+- Não possuam experiência prévia suficiente com testes unitários.  
+- Recusem o termo de consentimento ou não possam estar presentes durante as etapas definidas.  
+
+## 10.4 Tamanho da amostra planejado (por grupo)
+O experimento será dividido em dois grupos principais:
+
+- **Grupo Humano (H):** 6 a 10 desenvolvedores.
+- **Grupo IA (AI):** equivalente ao conjunto de ferramentas selecionadas (entre 3 e 5 ferramentas).
+
+O tamanho foi definido considerando:
+
+- Limitação de tempo para execução e análise.  
+- Variabilidade esperada entre sujeitos humanos.  
+- Possibilidade de replicação dos testes para cada ferramenta de IA.
+
+## 10.5 Método de seleção / recrutamento
+A seleção será realizada via:
+
+- **Amostra de conveniência**, composta por desenvolvedores convidados diretamente.  
+- Recrutamento em grupos profissionais de Java e QA.  
+- Indicação de profissionais por empresas parceiras.  
+
+A participação é voluntária e sem compensação financeira.
+
+## 10.6 Treinamento e preparação dos sujeitos
+Para nivelar conhecimento e reduzir vieses, os participantes receberão:
+
+- **Guia rápido do projeto**, contendo arquitetura simplificada e requisitos.  
+- **Exemplos de testes unitários** esperados (não relacionados às classes avaliadas).  
+- **Mini tutorial de JUnit 5 e Mockito**, garantindo consistência nas abordagens.  
+- Orientação sobre critérios de qualidade adotados (legibilidade, asserts, estrutura AAA).
+
+---
+
+# 11. Instrumentação e Protocolo Operacional
+
+## 11.1 Instrumentos de coleta (questionários, logs, planilhas, etc.)
+Os seguintes instrumentos serão utilizados na coleta de dados:
+
+- **Planilha de métricas** contendo cobertura, número de testes, taxa de mutação e falhas.  
+- **Scripts de execução automatizada** para rodar cobertura e mutação.  
+- **Formulário pós-tarefa** para capturar percepção dos participantes humanos.  
+- **Logs de execução do Maven/Gradle**, registrando sucesso ou falha dos testes.  
+- **Repositório Git**, registrando todas as submissões de código (humanos e IA).
+
+## 11.2 Materiais de suporte (instruções, guias)
+Os participantes receberão:
+
+- Documento PDF com instruções gerais.  
+- Guia rápido contendo:
+  - Estrutura do projeto,
+  - Dependências necessárias,
+  - Critérios de qualidade dos testes.  
+- Exemplos ilustrativos de testes bem estruturados (não relacionados ao experimento).  
+- Manual para submissão no repositório Git.
+
+## 11.3 Procedimento experimental (protocolo – visão passo a passo)
+1. **Convite e assinatura do TCLE.**  
+2. **Treinamento inicial** e disponibilização dos materiais de suporte.  
+3. **Entrega das classes alvo** (iguais para humanos e IA).  
+4. **Grupo Humano:**  
+   - Desenvolvimento manual dos testes, seguindo critérios fornecidos.  
+   - Submissão dos testes no repositório.  
+5. **Grupo IA:**  
+   - Geração automática de testes pelas ferramentas selecionadas.  
+   - Ajustes mínimos necessários para compilação (quando permitido).  
+6. **Execução das métricas** (cobertura, mutação, falhas).  
+7. **Coleta dos dados** via planilhas e logs.  
+8. **Aplicação do questionário pós-tarefa** aos participantes humanos.  
+9. **Encerramento** e organização das evidências para análise.
+
+## 11.4 Plano de piloto
+Um **piloto reduzido** será realizado com:
+
+- 1 desenvolvedor voluntário;  
+- 1 ferramenta de IA.
+
+Durante a etapa piloto, o principal objetivo é verificar a consistência e a clareza do protocolo experimental. Essa fase permitirá identificar possíveis inconsistências no procedimento, avaliando se as instruções fornecidas aos participantes são suficientemente claras e se o tempo estimado para execução das tarefas é realista. O piloto também será utilizado para revisar e, se necessário, ajustar os materiais de apoio disponibilizados. Além disso, essa etapa tem como finalidade validar os scripts responsáveis pela coleta dos dados e pela execução das métricas, garantindo que todo o processo esteja funcionando corretamente antes da realização do experimento completo.
+
+Critérios de ajuste:
+
+- Dúvidas recorrentes no participante piloto.  
+- Falhas nos scripts de instrumentação.  
+- Tempo total significativamente diferente do planejado.  
+
+---
+
+# 12. Plano de Análise de Dados (pré-execução)
+
+## 12.1 Estratégia geral de análise
+A análise dos dados será conduzida com o objetivo de responder às questões de pesquisa por meio da comparação sistemática entre o desempenho dos participantes humanos e o das ferramentas de IA. Serão examinados aspectos como a qualidade estrutural dos testes produzidos, a capacidade de detecção de falhas, a eficácia medida por mutação, a cobertura alcançada e a produtividade em termos de tempo investido. Todas as métricas serão previamente normalizadas para permitir comparações equivalentes entre grupos, preservando a granularidade das replicações individuais.
+
+## 12.2 Métodos estatísticos planejados
+A análise estatística seguirá um fluxo que inicia com a verificação de normalidade dos dados, utilizando o teste de Shapiro-Wilk. Caso os dados apresentem distribuição aproximadamente normal, serão aplicados testes paramétricos, como o t-teste ou ANOVA. Se a normalidade não for atendida, serão empregados testes não paramétricos equivalentes, como Mann-Whitney ou Kruskal-Wallis. Além disso, serão calculados intervalos de confiança e medidas de tamanho de efeito (por exemplo, Cohen’s d), complementados por estatísticas descritivas como médias, medianas, desvios padrão e intervalos interquartílicos.
+
+## 12.3 Tratamento de dados faltantes e outliers
+O tratamento dos dados faltantes seguirá a estratégia de remoção listwise sempre que a ausência de valores inviabilizar a análise estatística. Outliers serão identificados por meio do intervalo interquartílico (IQR) e analisados individualmente. A remoção de um valor extremo somente ocorrerá quando houver evidência clara de erro na execução ou coleta dos dados, evitando qualquer decisão pós-hoc que possa introduzir viés.
+
+## 12.4 Plano de análise para dados qualitativos
+Caso sejam coletados dados qualitativos, como percepções e comentários fornecidos pelos participantes humanos, esses serão analisados por meio de um processo de codificação aberta, seguido da organização das unidades de significado em categorias semânticas. A interpretação final buscará relacionar essas percepções qualitativas às métricas quantitativas, enriquecendo a compreensão dos resultados e permitindo uma triangulação mais robusta entre diferentes tipos de evidência.
+
+
 
 **Nota Final:** Este plano deve ser considerado um documento vivo, sujeito a ajustes após pilot study e revisão por pares. Quaisquer modificações substanciais devem ser documentadas com justificativa e versionamento adequado para garantir transparência e rastreabilidade metodológica.
