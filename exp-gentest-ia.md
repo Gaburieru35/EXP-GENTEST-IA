@@ -15,10 +15,11 @@ Avaliação Comparativa da Geração Automática de Casos de Teste Utilizando In
 | v1.1 | 23/11/2025 | Gabriel Henrique | Refatoração seguindo template padrão |
 | v1.2 | 28/11/2025 | Gabriel Henrique | Modelo conceitual e hipóteses; Variáveis, fatores, tratamentos e objetos de estudo e Desenho experimental  |
 | v2.0 | 01/12/2025 | Gabriel Henrique |  População, sujeitos e amostragem; Instrumentação e protocolo operacional e Plano de análise de dados (pré-execução) |
+| v2.5 | 05/12/2025 | Gabriel Henrique |  Avaliação de validade (ameaças e mitigação) |
 
 ### 1.4 Datas
 - **Criação:** 23/11/2025  
-- **Última atualização:** 01/12/2025
+- **Última atualização:** 05/12/2025
 
 ### 1.5 Autores
 - **Gabriel Henrique** – Bacharelado em Engenharia de Software / gabriel.henrique@sga.pucminas.br
@@ -673,13 +674,13 @@ Essa estrutura mantém o experimento funcional, balanceado e reduz o impacto de 
 
 ---
 
-# 10. População, Sujeitos e Amostragem
+## 10. População, Sujeitos e Amostragem
 
-## 10.1 População-alvo
+### 10.1 População-alvo
 A população-alvo do experimento é composta por **desenvolvedores Java que atuam na criação e manutenção de testes unitários em sistemas corporativos**.  
 Incluem-se profissionais que trabalham com desenvolvimento backend, QA automatizado e equipes de produto que utilizam JUnit, Mockito e padrões modernos de teste.
 
-## 10.2 Critérios de inclusão de sujeitos
+### 10.2 Critérios de inclusão de sujeitos
 Para participar do experimento, os sujeitos devem atender aos seguintes critérios:
 
 - Experiência mínima de **3 anos com desenvolvimento Java**.  
@@ -689,7 +690,7 @@ Para participar do experimento, os sujeitos devem atender aos seguintes critéri
 - Capacidade de ler e compreender requisitos funcionais simples.  
 - Aceitação e assinatura do **TCLE**.
 
-## 10.3 Critérios de exclusão de sujeitos
+### 10.3 Critérios de exclusão de sujeitos
 Serão excluídos do experimento participantes que:
 
 - Tenham relação direta com o desenvolvimento de ferramentas de IA avaliadas.  
@@ -697,7 +698,7 @@ Serão excluídos do experimento participantes que:
 - Não possuam experiência prévia suficiente com testes unitários.  
 - Recusem o termo de consentimento ou não possam estar presentes durante as etapas definidas.  
 
-## 10.4 Tamanho da amostra planejado (por grupo)
+### 10.4 Tamanho da amostra planejado (por grupo)
 O experimento será dividido em dois grupos principais:
 
 - **Grupo Humano (H):** 6 a 10 desenvolvedores.
@@ -709,7 +710,7 @@ O tamanho foi definido considerando:
 - Variabilidade esperada entre sujeitos humanos.  
 - Possibilidade de replicação dos testes para cada ferramenta de IA.
 
-## 10.5 Método de seleção / recrutamento
+### 10.5 Método de seleção / recrutamento
 A seleção será realizada via:
 
 - **Amostra de conveniência**, composta por desenvolvedores convidados diretamente.  
@@ -718,7 +719,7 @@ A seleção será realizada via:
 
 A participação é voluntária e sem compensação financeira.
 
-## 10.6 Treinamento e preparação dos sujeitos
+### 10.6 Treinamento e preparação dos sujeitos
 Para nivelar conhecimento e reduzir vieses, os participantes receberão:
 
 - **Guia rápido do projeto**, contendo arquitetura simplificada e requisitos.  
@@ -728,9 +729,9 @@ Para nivelar conhecimento e reduzir vieses, os participantes receberão:
 
 ---
 
-# 11. Instrumentação e Protocolo Operacional
+## 11. Instrumentação e Protocolo Operacional
 
-## 11.1 Instrumentos de coleta (questionários, logs, planilhas, etc.)
+### 11.1 Instrumentos de coleta (questionários, logs, planilhas, etc.)
 Os seguintes instrumentos serão utilizados na coleta de dados:
 
 - **Planilha de métricas** contendo cobertura, número de testes, taxa de mutação e falhas.  
@@ -739,7 +740,7 @@ Os seguintes instrumentos serão utilizados na coleta de dados:
 - **Logs de execução do Maven/Gradle**, registrando sucesso ou falha dos testes.  
 - **Repositório Git**, registrando todas as submissões de código (humanos e IA).
 
-## 11.2 Materiais de suporte (instruções, guias)
+### 11.2 Materiais de suporte (instruções, guias)
 Os participantes receberão:
 
 - Documento PDF com instruções gerais.  
@@ -750,7 +751,7 @@ Os participantes receberão:
 - Exemplos ilustrativos de testes bem estruturados (não relacionados ao experimento).  
 - Manual para submissão no repositório Git.
 
-## 11.3 Procedimento experimental (protocolo – visão passo a passo)
+### 11.3 Procedimento experimental (protocolo – visão passo a passo)
 1. **Convite e assinatura do TCLE.**  
 2. **Treinamento inicial** e disponibilização dos materiais de suporte.  
 3. **Entrega das classes alvo** (iguais para humanos e IA).  
@@ -765,7 +766,7 @@ Os participantes receberão:
 8. **Aplicação do questionário pós-tarefa** aos participantes humanos.  
 9. **Encerramento** e organização das evidências para análise.
 
-## 11.4 Plano de piloto
+### 11.4 Plano de piloto
 Um **piloto reduzido** será realizado com:
 
 - 1 desenvolvedor voluntário;  
@@ -781,20 +782,93 @@ Critérios de ajuste:
 
 ---
 
-# 12. Plano de Análise de Dados (pré-execução)
+## 12. Plano de Análise de Dados (pré-execução)
 
-## 12.1 Estratégia geral de análise
+### 12.1 Estratégia geral de análise
 A análise dos dados será conduzida com o objetivo de responder às questões de pesquisa por meio da comparação sistemática entre o desempenho dos participantes humanos e o das ferramentas de IA. Serão examinados aspectos como a qualidade estrutural dos testes produzidos, a capacidade de detecção de falhas, a eficácia medida por mutação, a cobertura alcançada e a produtividade em termos de tempo investido. Todas as métricas serão previamente normalizadas para permitir comparações equivalentes entre grupos, preservando a granularidade das replicações individuais.
 
-## 12.2 Métodos estatísticos planejados
+### 12.2 Métodos estatísticos planejados
 A análise estatística seguirá um fluxo que inicia com a verificação de normalidade dos dados, utilizando o teste de Shapiro-Wilk. Caso os dados apresentem distribuição aproximadamente normal, serão aplicados testes paramétricos, como o t-teste ou ANOVA. Se a normalidade não for atendida, serão empregados testes não paramétricos equivalentes, como Mann-Whitney ou Kruskal-Wallis. Além disso, serão calculados intervalos de confiança e medidas de tamanho de efeito (por exemplo, Cohen’s d), complementados por estatísticas descritivas como médias, medianas, desvios padrão e intervalos interquartílicos.
 
-## 12.3 Tratamento de dados faltantes e outliers
+### 12.3 Tratamento de dados faltantes e outliers
 O tratamento dos dados faltantes seguirá a estratégia de remoção listwise sempre que a ausência de valores inviabilizar a análise estatística. Outliers serão identificados por meio do intervalo interquartílico (IQR) e analisados individualmente. A remoção de um valor extremo somente ocorrerá quando houver evidência clara de erro na execução ou coleta dos dados, evitando qualquer decisão pós-hoc que possa introduzir viés.
 
-## 12.4 Plano de análise para dados qualitativos
+### 12.4 Plano de análise para dados qualitativos
 Caso sejam coletados dados qualitativos, como percepções e comentários fornecidos pelos participantes humanos, esses serão analisados por meio de um processo de codificação aberta, seguido da organização das unidades de significado em categorias semânticas. A interpretação final buscará relacionar essas percepções qualitativas às métricas quantitativas, enriquecendo a compreensão dos resultados e permitindo uma triangulação mais robusta entre diferentes tipos de evidência.
 
+## 13. Avaliação de Validade
 
+### 13.1 Validade de Conclusão Estatística
+
+#### Ameaças
+
+| **Ameaça** | **Descrição** | **Mitigação** |
+|------------|---------------|---------------|
+| **Baixo poder estatístico** | Amostra insuficiente pode não detectar efeitos reais | • Cálculo a priori do tamanho amostral (n=60)<br>• Foco em efeitos de tamanho médio-grande<br>• Análise de poder post-hoc |
+| **Violação de pressupostos** | ANOVA requer normalidade e homogeneidade | • Testar pressupostos formalmente<br>• Aplicar transformações se necessário<br>• Usar alternativas não-paramétricas (Kruskal-Wallis) |
+| **Taxa de erro Tipo I** | Múltiplas comparações inflam falsos positivos | • Correção de Bonferroni ou Holm<br>• Definir α conservador (0.05 ou 0.01)<br>• Relatar tamanhos de efeito além de p-values |
+| **Variabilidade não controlada** | Fontes de variação aleatória reduzem precisão | • Bloqueamento por desenvolvedor e projeto<br>• Replicações (n=3 por combinação)<br>• Ambiente padronizado |
+
+---
+
+### 13.2 Validade Interna
+
+#### Ameaças
+
+| **Ameaça** | **Descrição** | **Mitigação** |
+|------------|---------------|---------------|
+| **Efeito de aprendizagem** | Desenvolvedores melhoram ao longo do tempo | • Contrabalanceamento Latin Square<br>• Alternar ordem de classes entre participantes<br>• Período de familiarização inicial |
+| **Fadiga** | Desempenho piora com cansaço acumulado | • Limitar sessões a 2h consecutivas<br>• Pausas obrigatórias a cada 4 classes<br>• Distribuir ao longo de semanas |
+| **Seleção de código** | Classes escolhidas não serem comparáveis | • Estratificação por complexidade e tipo<br>• Métricas objetivas de seleção<br>• Validação de similaridade intra-tipo |
+| **Variação de ferramentas** | Atualizações mudam comportamento | • Fixar versões específicas<br>• Desabilitar updates automáticos<br>• Documentar configurações exatas |
+| **Viés do experimentador** | Expectativas influenciam coleta/análise | • Automação máxima da coleta<br>• Avaliadores cegos para abordagem (quando possível)<br>• Múltiplos avaliadores independentes |
+
+---
+
+### 13.3 Validade de Constructo
+
+#### Ameaças
+
+| **Ameaça** | **Descrição** | **Mitigação** |
+|------------|---------------|---------------|
+| **Operacionalização inadequada** | Métricas não capturam conceitos de interesse | • Usar múltiplas métricas por constructo<br>• Validação com literatura (cobertura, mutação)<br>• Triangulação entre métricas quantitativas e qualitativas |
+| **Viés mono-método** | Depender de apenas uma ferramenta de medição | • JaCoCo + PITest + SonarQube<br>• Métricas automáticas + avaliação humana<br>• Validação cruzada entre ferramentas |
+| **Reatividade (Hawthorne)** | Participantes alteram comportamento por serem observados | • Explicar objetivo geral sem detalhar hipóteses<br>• Ambiente natural de trabalho<br>• Minimizar supervisão direta |
+| **Confusão constructo-método** | Características do método confundidas com constructo | • Comparar múltiplas ferramentas de IA<br>• Incluir baseline manual<br>• Análise de componentes específicos (ex.: tipo de prompt) |
+
+---
+
+### 13.4 Validade Externa
+
+#### Ameaças
+
+| **Ameaça** | **Descrição** | **Mitigação** |
+|------------|---------------|---------------|
+| **Generalização de pessoas** | Desenvolvedores não representam população | • Estratificar por experiência (júnior/pleno/sênior)<br>• Recrutar de diferentes organizações<br>• Documentar características da amostra |
+| **Generalização de contexto** | Código-fonte pode não representar sistemas reais | • Múltiplos projetos open-source maduros<br>• Diversidade de domínios (financeiro, web etc.)<br>• Classes de sistemas em produção |
+| **Generalização temporal** | Ferramentas evoluem rapidamente | • Documentar versões e datas precisas<br>• Reconhecer limitação temporal explicitamente<br>• Sugerir replicações futuras |
+| **Generalização de tecnologia** | Limitação ao ecossistema Java | • Utilizar linguagem amplamente usada (Java)<br>• Framework padrão da indústria (JUnit 5)<br>• Delimitar escopo com clareza |
+| **Interação tratamento-contexto** | Efeitos podem depender fortemente de parâmetros | • Testar múltiplas configurações de IA (quando possível)<br>• Usar configurações padrão/recomendadas<br>• Documentar parametrizações |
+
+### 13.5 Resumo das principais ameaças e estratégias de mitigação
+
+A tabela abaixo sintetiza as ameaças consideradas mais críticas em cada dimensão de validade, juntamente com as ações planejadas para mitigá-las.
+
+| **Categoria** | **Ameaça Crítica** | **Mitigação Principal** |
+|---------------|---------------------|--------------------------|
+| **Conclusão Estatística** | Baixo poder estatístico | Cálculo a priori de amostra (n=60) e foco em efeitos médios/grandes |
+| **Conclusão Estatística** | Violação de pressupostos da ANOVA | Testes formais, transformações e alternativas não paramétricas |
+| **Conclusão Estatística** | Aumento da taxa de erro Tipo I | Correções de múltiplas comparações (Holm/Bonferroni) |
+| **Interna** | Efeito de aprendizagem | Contrabalanceamento (Latin Square) e familiarização prévia |
+| **Interna** | Fadiga dos participantes | Pausas obrigatórias e limite de tempo por sessão |
+| **Interna** | Seleção inadequada de código | Estratificação por complexidade e validação objetiva |
+| **Constructo** | Operacionalização inadequada dos conceitos | Uso de múltiplas métricas e triangulação quantitativa/qualitativa |
+| **Constructo** | Viés mono-método | Uso combinado de JaCoCo, PITest e SonarQube |
+| **Externa** | Baixa generalização de participantes | Amostra diversificada quanto à experiência e origem |
+| **Externa** | Baixa generalização de código e contexto | Uso de múltiplos projetos reais e variados |
+
+Essa síntese funciona como visão geral das áreas de risco mais relevantes e das ações usadas para garantir robustez metodológica.
+
+---
 
 **Nota Final:** Este plano deve ser considerado um documento vivo, sujeito a ajustes após pilot study e revisão por pares. Quaisquer modificações substanciais devem ser documentadas com justificativa e versionamento adequado para garantir transparência e rastreabilidade metodológica.
