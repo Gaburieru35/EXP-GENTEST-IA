@@ -14,13 +14,13 @@ Avaliação Comparativa da Geração Automática de Casos de Teste Utilizando In
 | v1.0 | 23/11/2025 | Gabriel Henrique | Versão inicial do plano completo |
 | v1.1 | 23/11/2025 | Gabriel Henrique | Refatoração seguindo template padrão |
 | v1.2 | 28/11/2025 | Gabriel Henrique | Modelo conceitual e hipóteses; Variáveis, fatores, tratamentos e objetos de estudo e Desenho experimental  |
-| v2.0 | 01/12/2025 | Gabriel Henrique |  População, sujeitos e amostragem; Instrumentação e protocolo operacional e Plano de análise de dados (pré-execução) |
-| v2.5 | 05/12/2025 | Gabriel Henrique |  Avaliação de validade (ameaças e mitigação) |
+| v2.0 | 01/12/2025 | Gabriel Henrique | População, sujeitos e amostragem; Instrumentação e protocolo operacional e Plano de análise de dados (pré-execução) |
+| v2.5 | 05/12/2025 | Gabriel Henrique | Avaliação de validade (ameaças e mitigação) |
+| v2.8 | 12/12/2025 | Gabriel Henrique | Seções 14 à 20 |
 
 ### 1.4 Datas
 - **Criação:** 23/11/2025  
-- **Última atualização:** 05/12/2025
-
+- **Última atualização:** 12/12/2025
 ### 1.5 Autores
 - **Gabriel Henrique** – Bacharelado em Engenharia de Software / gabriel.henrique@sga.pucminas.br
 
@@ -868,6 +868,273 @@ A tabela abaixo sintetiza as ameaças consideradas mais críticas em cada dimens
 | **Externa** | Baixa generalização de código e contexto | Uso de múltiplos projetos reais e variados |
 
 Essa síntese funciona como visão geral das áreas de risco mais relevantes e das ações usadas para garantir robustez metodológica.
+
+---
+
+## 14. Ética, privacidade e conformidade
+
+### 14.1 Questões éticas (uso de sujeitos, incentivos, etc.)
+
+* **Potenciais questões éticas identificadas**
+
+  * **Pressão para participar:** possível coerção implícita caso recrutamento ocorra via gestores.
+  * **Uso de estudantes/profissionais:** risco de desigualdade de poder (por exemplo, estudantes recrutados por professores).
+  * **Incentivos:** oferta de compensação pode influenciar participação e respostas.
+  * **Riscos de exposição:** divulgação acidental de dados pessoais (e-mails, identificadores), ou de código proprietário caso algum participante acesse repositórios sensíveis.
+  * **Conflito de interesses:** participantes que trabalhem para fornecedores das ferramentas avaliadas.
+* **Medidas de tratamento / mitigação**
+
+  * Recrutamento voluntário por convite direto, informando claramente que a recusa não traz prejuízo.
+  * Proibir recrutamento por hierarquia direta (gestores não devem recrutar subordinados diretos).
+  * Limitar participação a profissionais com >3 anos de experiência (já definido) — evitar incluir estudantes sem supervisão ética adequada.
+  * Transparência sobre incentivos: se houver (por exemplo, vale), descrevê-los no TCLE e aplicar o mesmo tratamento a todos.
+  * Exigir declaração de conflito de interesses (participantes com vínculo empregatício com fornecedores das ferramentas serão excluídos).
+  * Minimizar coleta de dados sensíveis e anonimizar relatórios públicos.
+
+### 14.2 Consentimento informado
+
+* **Conteúdo do documento de consentimento (TCLE)**
+
+  * Objetivo do estudo, procedimentos e duração estimada (20–30 horas por participante).
+  * Descrição dos riscos e benefícios (sem riscos físicos; riscos de privacidade/log de atividade).
+  * Informação sobre voluntariedade, retirada e consequências da retirada (dados já colhidos poderão ser removidos mediante solicitação até X dias após coleta).
+  * Contato do pesquisador responsável (PI) e do Comitê de Ética (se aplicável).
+  * Como os dados serão utilizados, armazenados e publicados (anonimizados).
+  * Declaração sobre gravação de logs e uso de repositórios Git com identificação controlada.
+* **Procedimento de obtenção**
+
+  * Assinatura eletrônica ou física do TCLE antes da participação.
+  * Verificação de identidade mínima (e-mail institucional) e confirmação de leitura por checklist.
+  * Registro do consentimento em repositório seguro (ex.: pasta criptografada no repositório do projeto) com timestamp.
+
+### 14.3 Privacidade e proteção de dados
+
+* **Dados pessoais coletados (mínimos e justificados)**
+
+  * Nome, e-mail institucional, experiência (anos), cargo e nível (júnior/pleno/sênior).
+  * Logs de atividade relacionados à execução de tarefas (tempo, commits, outputs de ferramentas).
+  * Não serão coletados dados sensíveis (saúde, raça, religião, etc.).
+* **Medidas de proteção**
+
+  * **Anonimização:** em qualquer relatório público, substituir identificadores por códigos (e.g., P01, DEV03).
+  * **Pseudonimização:** repositório mestre com mapeamento (código ↔ identidade) armazenado em local separado e acessível apenas ao PI.
+  * **Controle de acesso:** apenas PI e assistente de pesquisa têm acesso ao mapeamento e dados brutos; avaliadores cegos recebem conjuntos já anonimizados.
+  * **Criptografia em repouso e trânsito:** discos/arquivos com dados pessoais armazenados em sistemas que suportem criptografia; transferência via canais seguros (HTTPS/SSH).
+  * **Retenção de dados:** dados identificáveis serão mantidos apenas enquanto necessários para validação e auditoria (sugestão: **2 anos**); dados agregados/anônimos poderão ser preservados indefinidamente para replicação (com versão e metadados).
+  * **Descarte seguro:** ao término do período de retenção, exclusão segura dos arquivos identificáveis e logs sensíveis.
+* **Conformidade**
+
+  * Adequar-se à legislação local aplicável (LGPD no Brasil) e às políticas da instituição (DPO/Comitê de Ética), com registro de bases legais (consentimento informado) e tratamento adequado de pedidos de acesso/retificação/exclusão.
+
+### 14.4 Aprovações necessárias (comitê de ética, jurídico, DPO, etc.)
+
+* **Órgãos/pessoas que devem aprovar**
+
+  * Comitê de Ética em Pesquisa (CEP) ou equivalente institucional (quando o estudo envolver coleta de dados pessoais ou avaliação humana direta).
+  * Departamento Jurídico (para revisão de termos, uso de licenças e contratos de acesso às ferramentas comerciais).
+  * Data Protection Officer (DPO) ou responsável por privacidade da instituição (LGPD).
+  * Coordenador do curso / orientador (para TCC) e gestor da infraestrutura (TI/Cloud) para aprovações operacionais.
+* **Status e ações**
+
+  * Inserir template do TCLE e instruções do piloto para submissão ao CEP.
+  * Documentar e anexar todas as aprovações no repositório do projeto (seção `docs/approvals`).
+  * Não iniciar coleta com participantes até obter as aprovações necessárias.
+
+---
+
+## 15. Recursos, infraestrutura e orçamento
+
+### 15.1 Recursos humanos e papéis
+
+* **Gabriel Henrique (PI)** — coordenação científica, submissão ética, análise final, redação das publicações.
+* **Assistente de pesquisa** — apoio operacional, configuração de ambientes, execução de scripts, anonimização e manutenção dos repositórios.
+* **Desenvolvedores participantes (6–10)** — execução de tarefas de escrita/avaliação de testes, preenchimento de questionários pós-tarefa.
+* **Avaliadores de qualidade (2)** — avaliação independente da legibilidade/boas práticas; cálculo de Kappa e revisão qualitativa.
+* **Equipe de TI / DevOps (opcional)** — provisionamento de VMs/containers e suporte à infraestrutura CI.
+* **DPO / Jurídico / Comitê de Ética** — revisão e aprovação de conformidade.
+
+### 15.2 Infraestrutura técnica necessária
+
+**Ambientes de execução:** VMs ou containers padronizados (imagem com JDK 11, Maven/Gradle, JUnit 5, Mockito).
+**Repositório Git central:** GitHub/Bitbucket/GitLab (repositório privado para dados brutos; repositório público com artefatos anônimos).
+**Serviços/integrações:** runners CI (GitHub Actions / GitLab CI) para execução automatizada de JaCoCo e PITest; armazenamento seguro para logs (S3 ou equivalente).
+**Ferramentas de medição:** JaCoCo, PITest, SonarQube, Checkstyle instalados em runners/containers.
+**Ferramentas IA:** contas/keys para ChatGPT (ou modelo local), GitHub Copilot (licença), Diffblue (licença/versão trial), Coverity (se aplicável).
+**Planilhas/DB para coleta:** planilha em formato controlado (Google Sheets com acesso restrito) ou banco simples (SQLite/Postgres) para metadados e resultados.
+**Controle de versão e artefatos:** política de tagging e branches para garantir reprodutibilidade (sem usar dados identificáveis).
+
+### 15.3 Materiais e insumos
+
+* Máquinas virtuais/containers padronizados; imagens Docker (Dockerfile versionado).
+* Licenças acadêmicas ou trial das ferramentas comerciais (documentar chaves e validade).
+* Templates: TCLE, questionário pós-tarefa, roteiro do piloto, scripts de execução (bash/python).
+* Formulários eletrônicos (Google Forms/Typeform) ou arquivos com validação para coleta de percepções.
+* Dispositivos pessoais dos participantes (PC com IDE) — não se exige hardware especial além do padrão de desenvolvimento.
+
+---
+
+## 16. Cronograma, marcos e riscos operacionais
+
+### 16.1 Macrocronograma (até o início da execução)
+
+ **Semana 0:** Revisão final do plano e submissões (CEP, jurídico, DPO).
+ **Semana 1:** Provisionamento de infraestrutura; obtenção de licenças/trials.
+ **Semana 2:** Preparação dos materiais (TCLE, scripts, guias) e recrutamento inicial.
+ **Semana 3:** Piloto (1 desenvolvedor + 1 ferramenta) e ajustes do protocolo.
+ **Semana 4:** Revisão pós-piloto e versão final do protocolo.
+ **Semana 5:** Treinamento dos participantes e agendamento das sessões.
+ **Semana 6:** Início da coleta (desde que aprovações estejam OK).
+
+> Estas etapas totalizam ~6 semanas de preparação; como o plano tem janela de 13 semanas para execução completa, recomenda-se reservar 7 semanas para execução e análise.
+
+### 16.2 Dependências entre atividades
+
+ **Submissão ética → Treinamento / Coleta:** não iniciar sessões com participantes sem aprovação ética (dependência crítica).
+ **Provisionamento infra → Execução de scripts de medição:** infraestrutura deve estar disponível e validada antes do piloto.
+ **Obtaining Licenses → Uso das ferramentas IA comerciais:** garantir chaves/contas antes do piloto ou ter alternativas livres.
+ **Recrutamento → Balanceamento e randomização:** número mínimo de participantes (≥6) necessário para grupos humanos; sem isso, replanejar.
+
+### 16.3 Riscos operacionais e plano de contingência
+
+* **Risco:** falha ou indisponibilidade de APIs/serviços de IA.
+
+  * *Contingência:* ter versões locais ou alternativos (ou atrasar execução da ferramenta afetada e analisar parcial).
+* **Risco:** desistência de participantes.
+
+  * *Contingência:* lista de espera (20% extra) e redistribuição do workload entre participantes remanescentes; possível extensão do cronograma.
+* **Risco:** scripts de medição falham em alguns projetos.
+
+  * *Contingência:* correção rápida nos scripts; executar manualmente quando necessário; registro de exceções.
+* **Risco:** atraso nas aprovações éticas.
+
+  * *Contingência:* iniciar atividades não dependentes (config infra, documentação, pré-treinamento) enquanto aguarda aprovação.
+* **Risco:** custos de licenças maiores que o previsto.
+
+  * *Contingência:* negociar licenças acadêmicas ou reduzir número de ferramentas comerciais testadas.
+
+---
+
+## 17. Governança do experimento
+
+### 17.1 Papéis e responsabilidades formais
+
+ **Decide (Governança/Go-NoGo):** PI (Gabriel Henrique) em conjunto com orientador/coordenador e representante do Comitê de Ética.
+ **Executa:** Desenvolvedores participantes (tarefas práticas) + Assistente de pesquisa (operação).
+ **Revisa:** Avaliadores de qualidade (análise independente); orientador acadêmico (revisão científica).
+ **Informado:** Stakeholders (gerentes, fornecedores, comunidade acadêmica) através de relatórios periódicos.
+ **Fluxo de responsabilidade:** PI → Assistente de pesquisa (operacional) → Avaliadores (qualidade) → PI (análise final e publicação).
+
+### 17.2 Ritos de acompanhamento pré-execução
+
+* **Reuniões previstas:**
+
+  * **Kickoff (única):** apresentação do plano, 1–2 h — participantes e apoiadores.
+  * **Checkpoint semanal (curto, 30–45 min):** equipe operacional (PI + assistente + TI) até início da execução.
+  * **Revisão pós-piloto:** reunião de 1–2 h para validar ajustes.
+  * **Reuniões de alinhamento com avaliadores:** 1 reunião antes do início das avaliações qualitativas.
+* **Participantes:** PI, assistente, representante TI, avaliadores (quando aplicável).
+* **Documentação:** atas e decisões registradas em `docs/meeting-minutes`.
+
+### 17.3 Processo de controle de mudanças no plano
+
+ **Proposta de mudança:** qualquer membro pode submeter uma mudançasem `docs/change-request.md` contendo justificativa e impacto.
+ **Análise:** PI e orientador avaliam impacto metodológico, ético e orçamentário.
+ **Aprovação:** mudanças significativas (metodologia, amostra, instruments) exigem aprovação do orientador e, quando aplicável, do CEP.
+ **Registro:** versão do plano atualizada (semântica vX.Y) com changelog; manter histórico em `docs/versioning.md`.
+
+---
+
+## 18. Plano de documentação e reprodutibilidade
+
+### 18.1 Repositórios e convenções de nomeação
+
+* **Repositório principal (privado → público):** `git` com branches: `main`, `pilot`, `data`, `analysis`. Ao publicar, dados anonimizados e artefatos vão para `public` (por exemplo, GitHub).
+* **Estrutura sugerida:**
+
+  * `/docs` — planos, TCLE, atas, aprovações.
+  * `/scripts` — scripts de execução (JaCoCo, PITest, coleta).
+  * `/artifacts` — relatórios brutos (anônimos) e resultados.
+  * `/data/raw` — dados brutos (acesso restrito).
+  * `/data/processed` — dados prontos para análise (anonimizados).
+* **Convenção de nomes:** `YYYYMMDD_tipo_projeto_versao.ext` (ex.: `20251201_coverage_projectX_v1.csv`).
+
+### 18.2 Templates e artefatos padrão
+
+* **Modelos a manter e disponibilizar:**
+
+  * TCLE (Termo de Consentimento).
+  * Formulário de conflito de interesse.
+  * Template de relatório de sessão/piloto.
+  * Questionário pós-tarefa (versão padronizada).
+  * Scripts de coleta (ex.: `run_coverage.sh`, `run_mutation.sh`).
+  * Rubrica de avaliação qualitativa (legibilidade, boas práticas).
+* **Local:** `/docs/templates` no repositório principal.
+
+### 18.3 Plano de empacotamento para replicação futura
+
+* **Artefatos para replicação:**
+
+  * Versões fixas das imagens Docker/VM (hash e Dockerfile).
+  * Lista de versões exatas das ferramentas (JDK, JaCoCo, PITest, versões das ferramentas IA).
+  * Scripts automatizados para executar experimentos end-to-end (construir, rodar testes, coletar métricas).
+  * Notebook de análise (R/Python) com scripts reproducíveis para geração de tabelas/figuras.
+  * Arquivo `README-replication.md` com passos detalhados (pré-requisitos, comandos, pontos de atenção).
+* **Entrega:** compactar em `release` (ex.: `experiment_release_v2.0.zip`) e publicar junto à versão final do artigo/dados.
+
+---
+
+## 19. Plano de comunicação
+
+### 19.1 Públicos e mensagens-chave pré-execução
+
+* **Participantes (desenvolvedores):** objetivos, duração, TCLE, cronograma e expectativas.
+* **Avaliadores / equipe técnica:** critérios de avaliação, rubricas e cronograma de entrega.
+* **Gestores / TI:** requisitos de infraestrutura e janelas de manutenção.
+* **Comitê de Ética / DPO / Jurídico:** documentação de conformidade e mitigação de riscos.
+* **Comunidade acadêmica / público externo (posterior):** objetivos de pesquisa, disponibilidade de dados anônimos e datas de divulgação.
+* **Mensagens-chave:** propósito do estudo, confidencialidade, voluntariedade, e impacto esperado.
+
+### 19.2 Canais e frequência de comunicação
+
+* **Canais:** e-mail institucional, Slack/Teams (canal dedicado), reuniões (Zoom/Meet), repositório Git (issues/PRs) e Google Drive para documentos.
+* **Frequência:**
+
+  * Atualizações operacionais (semanal) via canal do projeto.
+  * Checkpoint com equipe técnica (semanal até início) e quinzenal durante execução.
+  * Relatórios de status para stakeholders principais ao final de cada fase (piloto, meio, conclusão).
+
+### 19.3 Pontos de comunicação obrigatórios
+
+* Comunicação formal (e-mail + ata) nos eventos: aprovação do plano (Go), conclusão do piloto, mudanças de escopo aprovadas, atrasos significativos, cancelamentos e publicação de resultados.
+* Notificação imediata em caso de incidente de privacidade (vazamento/uso indevido de dados).
+
+---
+
+## 20. Critérios de prontidão para execução (Definition of Ready)
+
+### 20.1 Checklist de prontidão (itens que devem estar completos)
+
+* [ ] Versão final do plano experimental (documento e anexos).
+* [ ] TCLE e templates revisados e prontos para assinatura.
+* [ ] Aprovações necessárias obtidas (CEP/DPO/jurídico) **ou** protocolo de submissão em andamento com previsão de aprovação antes do piloto.
+* [ ] Infraestrutura provisionada (VMs/containers) e imagens testadas.
+* [ ] Scripts de execução (JaCoCo, PITest) validados no piloto.
+* [ ] Licenças / chaves das ferramentas IA garantidas (ou alternativas definidas).
+* [ ] Repositório Git configurado com políticas de acesso e convenções.
+* [ ] Participantes recrutados em número mínimo (≥6) e com TCLE assinado.
+* [ ] Avaliadores treinados e rubrica de avaliação acordada.
+* [ ] Plano de comunicação e ritos definidos e agendados.
+* [ ] Orçamento alocado e comprometido (ou plano de financiamento confirmado).
+
+### 20.2 Aprovações finais para iniciar a operação
+
+* **Quem precisa dar o “ok final”:**
+
+  * **PI (Gabriel Henrique)** — confirmação científica e operacional.
+  * **Orientador / Coordenador do curso** — validação acadêmica (para TCC).
+  * **Representante do CEP/DPO** — quando aplicável, confirmação de aprovação ética e conformidade de privacidade.
+  * **Gestor de TI / DevOps** — confirmação que a infraestrutura está pronta.
+* **Registro do aceite:** aceites documentados via e-mail oficial com timestamp e arquivados em `docs/approvals/`; decisão final registrada no changelog do plano (`vX.Y`) antes de iniciar a coleta.
 
 ---
 
